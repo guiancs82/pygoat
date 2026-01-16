@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define el nombre del reporte
-        REPORT_NAME = "bandit-report.json"
+        OUTPUT_PATH = "C:\\repogithub\\pygoat\\bandit_salida"
     }
 
     stages {
@@ -14,22 +14,17 @@ pipeline {
             }
         }
 
-        //stage('Build (Opcional)') {
-        //    steps {
-                // Si tu proyecto necesita ser construido (ej: pip install -r requirements.txt)
-        //        sh 'pip install -r requirements.txt'
-        //        echo 'Proyecto construido (si es necesario)'
-        //    }
-        //}
-
-        stage('SAST con Bandit') {
+        stage('SAST Scan with Bandit') {
             steps {
                 script {
-                    // Ejecuta Bandit mediante la imagen oficial de PyCQA en Docker
-                    // Se monta el directorio actual (%WORKSPACE% en Windows) al contenedor
-                    bat """
-                    docker run --rm -v "%WORKSPACE%":/app cytopia/bandit -r /code -f json -o /code/${REPORT_NAME} || exit 0
-                    """
+                    // Crea la carpeta de salida si no existe
+                    bat "if not exist ${OUTPUT_PATH} mkdir ${OUTPUT_PATH}"
+                    
+                    // Ejecuta Bandit y guarda la salida en archivos
+                    // -r: recursivo, -f: formato, -o: archivo de salida
+                    // Se usa '|| exit 0' para que el pipeline no falle si encuentra vulnerabilidades (opcional)
+                    bat "C:\Users\HP\AppData\Roaming\Python\Python314\Scripts\bandit.exe -r . -f json -o ${OUTPUT_PATH}\\reporte.json --exit-zero"
+                    bat "C:\Users\HP\AppData\Roaming\Python\Python314\Scripts\bandit.exe -r . -f html -o ${OUTPUT_PATH}\\reporte.html --exit-zero"
                 }
             }
         }
