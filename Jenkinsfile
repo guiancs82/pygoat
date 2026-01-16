@@ -14,13 +14,13 @@ pipeline {
             }
         }
 
-        stage('Build (Opcional)') {
-            steps {
+        //stage('Build (Opcional)') {
+        //    steps {
                 // Si tu proyecto necesita ser construido (ej: pip install -r requirements.txt)
-                sh 'pip install -r requirements.txt'
-                echo 'Proyecto construido (si es necesario)'
-            }
-        }
+        //        sh 'pip install -r requirements.txt'
+        //        echo 'Proyecto construido (si es necesario)'
+        //    }
+        //}
 
         stage('SAST con Bandit') {
             steps {
