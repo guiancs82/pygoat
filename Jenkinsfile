@@ -25,12 +25,12 @@ pipeline {
                     // Comando a ejecutar dentro del contenedor: instala Bandit y lo ejecuta sobre el código
                     // -v (volumen) monta el directorio actual del workspace a /app dentro del contenedor
                     // bandit -r /app -f json -o /tmp/bandit_report.json
-                    def command = "pip install bandit && bandit -r /app -f json -o /tmp/bandit_report.json"
+                    def command = "pip install bandit && bandit -r C:\repogithub\pygoat -f json -o C:\repogithub\pygoat\bandit_salida\bandit_report.json"
 
                     // Ejecuta Docker y captura la salida estándar (stdout)
                     // La salida de este comando es el contenido del archivo JSON del reporte
                     def bandit_output = sh(
-                        script: "docker run --rm -v \"${workspace}:/app\" ${image} sh -c \"${command}\"",
+                        script: 'docker run --rm -v "${WORKSPACE}:/app" cytopia/bandit bandit /app" ${image} sh -c \"${command}\"',
                         returnStdout: true // Captura la salida del comando en la variable
                     ).trim() // Elimina espacios en blanco al inicio/final
 
