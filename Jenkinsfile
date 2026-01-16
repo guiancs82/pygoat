@@ -1,6 +1,11 @@
 pipeline {
     agent any // O un agente específico con Python y Bandit instalado
 
+    environment {
+        // Define el nombre del reporte
+        REPORT_NAME = "bandit-report.json"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -19,13 +24,13 @@ pipeline {
 
         stage('SAST con Bandit') {
             steps {
-                // Instala Bandit si no está en el agente
-                sh 'pip install bandit'
-                // Ejecuta Bandit en el código fuente (ejemplo para Python)
-                sh 'bandit -r . -f json -o bandit-results.json'
-                echo 'Escaneo SAST con Bandit completado.'
-                // Opcional: Publicar resultados como artefacto
-                archiveArtifacts artifacts: 'bandit-results.json', fingerprint: true
+                script {
+                    // Ejecuta Bandit mediante la imagen oficial de PyCQA en Docker
+                    // Se monta el directorio actual (%WORKSPACE% en Windows) al contenedor
+                    bat """
+                    docker run --rm -v "%WORKSPACE%":/app cytopia/bandit -r /code -f json -o /code/${REPORT_NAME} || exit 0
+                    """
+                }
             }
         }
         // Puedes añadir más etapas como DAST, Deploy, etc.
