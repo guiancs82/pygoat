@@ -4,6 +4,7 @@ pipeline {
     environment {
         // Define el nombre del reporte
         OUTPUT_PATH = "C:\\repogithub\\pygoat\\bandit_salida"
+        bandit = "C:\\repogithub\\bandit"
     }
 
     stages {
