@@ -9,9 +9,10 @@ pipeline {
     stages {
         stage('Cleanup') {
             steps {
-                agent any { // or 'agent any' above
-                    deleteDir()
-                }
+                //node { // or 'agent any' above
+                //    deleteDir()
+                //}
+                deleteDir()
            }
         }
     
