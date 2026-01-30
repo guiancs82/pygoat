@@ -18,7 +18,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clona el código del repositorio
-                git url: 'https://github.com/guiancs82/pygoat.git', branch: 'main' // O la rama que necesites
+                //git url: 'https://github.com/guiancs82/pygoat.git', branch: 'main' // O la rama que necesites
+                checkout scm
             }
         }
 
