@@ -7,14 +7,13 @@ pipeline {
     }
 
     stages {
-        stage('Cleanup') {
-            always {
-                //node { // or 'agent any' above
-                //    deleteDir()
-                //}
-                deleteDir()
-           }
-        }
+        //stage('Cleanup') {
+        //    steps {
+        //        node { // or 'agent any' above
+        //            deleteDir()
+        //        }
+        //   }
+        //}
     
         stage('Checkout') {
             steps {
