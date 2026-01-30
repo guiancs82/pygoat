@@ -7,6 +7,14 @@ pipeline {
     }
 
     stages {
+        stage('Cleanup') {
+            steps {
+                node { // or 'agent any' above
+                    deleteDir()
+                }
+            }
+        }
+    
         stage('Checkout') {
             steps {
                 // Clona el código del repositorio
