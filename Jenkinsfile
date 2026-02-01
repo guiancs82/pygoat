@@ -33,8 +33,8 @@ pipeline {
                     // -r: recursivo, -f: formato, -o: archivo de salida
                     // Se usa '|| exit 0' para que el pipeline no falle si encuentra vulnerabilidades (opcional)
                     //C:\\Users\\HP\\AppData\\Roaming\\Python\\Python314\\Scripts\\
-                    bat "C:\\Users\\HP\\AppData\\Roaming\\Python\\Python314\\Scripts\\bandit.exe -r . -f json -o ${OUTPUT_PATH}\\reporte.json --exit-zero"
-                    bat "C:\\Users\\HP\\AppData\\Roaming\\Python\\Python314\\Scripts\\bandit.exe -r . -f html -o ${OUTPUT_PATH}\\reporte.html --exit-zero"
+                    bat "C:\\Python314\\Scripts\\bandit.exe -r . -f json -o ${OUTPUT_PATH}\\reporte.json --exit-zero"
+                    bat "C:\\Python314\\Scripts\\bandit.exe -r . -f html -o ${OUTPUT_PATH}\\reporte.html --exit-zero"
                 }
             }
         }
