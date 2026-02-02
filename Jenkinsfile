@@ -7,7 +7,7 @@ pipeline {
         
         //CONSTANTES PARA DEPENDENCY-Track
         // ID de la credencial configurada en Jenkins
-        DEPENDENCY_TRACK_API_KEY = credentials('odt_mpVZfuV1_CkTRxoyvW2d8DveOG8kmpTchOhc6F4Lj')
+        DEPENDENCY_TRACK_API_KEY = credentials('odt_mpVZfuV1_ig3GZtRBI1wMlW7ko4IFD4hDW9cMyuQD')
         DT_URL = 'http://localhost:8082'
         PROJECT_ID = 'PYGOAT'
     }
