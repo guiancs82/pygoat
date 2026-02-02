@@ -60,9 +60,9 @@ pipeline {
                 dependencyTrackPublisher(
                     artifact: '**/target/dependency-track/bom.xml', // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
-                    projectId: "${env.PROJECT_ID}",
-                    dependencyTrackUrl: "${env.DT_URL}",
-                    apiToken: "${env.DEPENDENCY_TRACK_API_KEY}"
+                    projectId: "${environment.PROJECT_ID}",
+                    dependencyTrackUrl: "${environment.DT_URL}",
+                    apiToken: "${environment.DEPENDENCY_TRACK_API_KEY}"
                 )
             }
         }
