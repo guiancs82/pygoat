@@ -10,7 +10,7 @@ pipeline {
         DEPENDENCY_TRACK_API_KEY = 'odt_mpVZfuV1_ig3GZtRBI1wMlW7ko4IFD4hDW9cMyuQD'
         DT_URL = 'http://localhost:8082'
         PROJECT_ID = 'PYGOAT'
-        SBOM_FILE = 'C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml'
+        SBOM_FILE = '/opt/owasp/dependency-track/dependency_track_salida/bom.xml'
     }
 
     stages {
