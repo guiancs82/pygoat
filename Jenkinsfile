@@ -10,6 +10,7 @@ pipeline {
         DEPENDENCY_TRACK_API_KEY = 'odt_mpVZfuV1_ig3GZtRBI1wMlW7ko4IFD4hDW9cMyuQD'
         DT_URL = 'http://localhost:8082'
         PROJECT_ID = 'PYGOAT'
+        SBOM_FILE = 'C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml'
     }
 
     stages {
@@ -58,7 +59,7 @@ pipeline {
             steps {
                 // Publicar SBOM a Dependency-Track
                 dependencyTrackPublisher(
-                    artifact: 'C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml', // Ruta al SBOM generado
+                    artifact: "${SBOM_FILE}", // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
                     projectId: "${environment.PROJECT_ID}",
                     dependencyTrackUrl: "${environment.DT_URL}",
