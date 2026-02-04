@@ -52,15 +52,16 @@ pipeline {
         stage('Build & SBOM') {
             steps {
                 // Generar SBOM usando Maven (o herramientas como cdxgen)
-                bat 'mvn org.cyclonedx:cyclonedx-maven-plugin:makeAggregateBom'
+                sh 'mvn org.cyclonedx:cyclonedx-maven-plugin:makeAggregateBom'
             }
         }
         stage('Dependency-Track Scan') {
             steps {
                 // Publicar SBOM a Dependency-Track
                 dependencyTrackPublisher(
-                    ///opt/owasp/dependency-track/dependency_track_salida/bom.xml
-                    artifact: 'C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml', // Ruta al SBOM generado
+                    //C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml
+                    //
+                    artifact: 'opt/owasp/dependency-track/dependency_track_salida/bom.xml', // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
                     projectId: "${environment.PROJECT_ID}",
                     dependencyTrackUrl: "${environment.DT_URL}",
