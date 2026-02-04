@@ -55,7 +55,7 @@ pipeline {
                 bat 'npm init -y'
                 bat 'npm install -g @cyclonedx/cyclonedx-npm'
                 bat 'set PATH=%PATH%;C:\\Users\\HP\\AppData\\Roaming\\npm'
-                bat 'cyclonedx-npm --output-file C:\\repogithub\\pygoat\\dependency_track_salida\\sbom.json'
+                bat 'C:\\Users\\HP\\AppData\\Roaming\\npm\\cyclonedx-npm --output-file C:\\repogithub\\pygoat\\dependency_track_salida\\sbom.json'
             }
         }
         stage('Dependency-Track Scan') {
