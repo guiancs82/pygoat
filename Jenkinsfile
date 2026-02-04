@@ -52,7 +52,7 @@ pipeline {
         stage('Build & SBOM') {
             steps {
                 // Generar SBOM usando Maven (o herramientas como cdxgen)
-                bat 'C:\\Users\\HP\\AppData\\Roaming\\npm\\npm init -y'
+                bat 'npm init -y'
                 bat 'C:\\Users\\HP\\AppData\\Roaming\\npm\\cyclonedx-npm --output-file C:\\repogithub\\pygoat\\dependency_track_salida\\sbom.json'
             }
         }
