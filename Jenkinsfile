@@ -49,22 +49,22 @@ pipeline {
         }
         
         //Stage de Dependency-Track
-        stage('Build & SBOM') {
-            steps {
+        //stage('Build & SBOM') {
+        //    steps {
                 // Generar SBOM usando Maven (o herramientas como cdxgen)
-                bat 'npm init -y'
-                bat 'npm install -g @cyclonedx/cyclonedx-npm'
-                bat 'set PATH=%PATH%;C:\\Users\\HP\\AppData\\Roaming\\npm'
-                bat 'C:\\Users\\HP\\AppData\\Roaming\\npm\\cyclonedx-npm --output-file C:\\repogithub\\pygoat\\dependency_track_salida\\sbom.json'
-            }
-        }
+                //bat 'npm init -y'
+        //        bat 'npm install -g @cyclonedx/cyclonedx-npm'
+        //        bat 'set PATH=%PATH%;C:\\Users\\HP\\AppData\\Roaming\\npm'
+        //        bat 'C:\\Users\\HP\\AppData\\Roaming\\npm\\cyclonedx-npm --output-file C:\\repogithub\\pygoat\\dependency_track_salida\\sbom.json'
+        //    }
+        //}
         stage('Dependency-Track Scan') {
             steps {
                 // Publicar SBOM a Dependency-Track
                 dependencyTrackPublisher(
                     //C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml
                     //
-                    artifact: 'C:\\repogithub\\pygoat\\dependency_track_salida\\sbom.json', // Ruta al SBOM generado
+                    artifact: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\proyecto_final_pygoat\\sbom.json', // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
                     projectId: "${environment.PROJECT_ID}",
                     dependencyTrackUrl: "${environment.DT_URL}",
