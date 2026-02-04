@@ -66,9 +66,9 @@ pipeline {
                     //
                     artifact: 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\proyecto_final_pygoat\\sbom.json', // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
-                    projectId: "${environment.PROJECT_ID}",
-                    dependencyTrackUrl: "${environment.DT_URL}",
-                    apiToken: "${environment.DEPENDENCY_TRACK_API_KEY}"
+                    projectId: "${env.PROJECT_ID}",
+                    dependencyTrackUrl: "${env.DT_URL}",
+                    apiToken: "${env.DEPENDENCY_TRACK_API_KEY}"
                 )
             }
         }
