@@ -52,7 +52,7 @@ pipeline {
         stage('Build & SBOM') {
             steps {
                 // Generar SBOM usando Maven (o herramientas como cdxgen)
-                sh 'mvn org.cyclonedx:cyclonedx-maven-plugin:makeAggregateBom'
+                bat 'mvn org.cyclonedx:cyclonedx-maven-plugin:makeAggregateBom'
             }
         }
         stage('Dependency-Track Scan') {
