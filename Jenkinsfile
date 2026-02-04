@@ -54,7 +54,7 @@ pipeline {
                 // Generar SBOM usando Maven (o herramientas como cdxgen)
                 bat 'npm init -y'
                 bat 'npm install -g @cyclonedx/cyclonedx-npm'
-                bat 'export PATH=$PATH:.\\node_modules\\.bin'
+                bat 'setx PATH "%PATH%;%AppData%\npm"'
                 bat 'cyclonedx-npm --output-file C:\\repogithub\\pygoat\\dependency_track_salida\\sbom.json'
             }
         }
