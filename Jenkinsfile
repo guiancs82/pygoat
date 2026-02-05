@@ -9,7 +9,7 @@ pipeline {
         // ID de la credencial configurada en Jenkins
         DEPENDENCY_TRACK_API_KEY = "odt_lxOz74Es_LaPQrq9ALXjw9e1VbhAxmshW6D77Z7Nj"
         DT_URL = "http://localhost:8081"
-        PROJECT_ID = "PYGOAT"
+        PROJECT_ID = "Administrators"
         SBOM_FILE = "/opt/owasp/dependency-track/dependency_track_salida/bom.xml"
         WORKSPACE = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\proyecto_final_pygoat\\"
     }
