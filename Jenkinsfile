@@ -79,7 +79,7 @@ pipeline {
     post {
         always {
             // Limpieza opcional
-            deleteDir()
+            //deleteDir()
         }
         failure {
             echo 'El pipeline falló.'
