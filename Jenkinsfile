@@ -101,7 +101,7 @@ pipeline {
                     projectId: "${env.PROJECT_ID}",
                     dependencyTrackUrl: "${env.DT_URL}",
                     dependencyTrackApiKey: "${env.DEPENDENCY_TRACK_API_KEY}",
-                    failedHigh: 0     // Falla si hay 1 alta
+                    failedTotalHigh: 0     // Falla si hay 1 alta
                 )
             }
         }
