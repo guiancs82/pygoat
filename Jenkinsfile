@@ -81,6 +81,24 @@ pipeline {
             }
         }
         
+        //Stage SCA de Dependency-Track con punto de parada si  hay una vulnerabilidad alta
+        stage('Dependency-Track Scan') {
+            steps {
+                // Publicar SBOM a Dependency-Track
+                dependencyTrackPublisher(
+                    //C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml
+                    //
+                    artifact: "${env.WORKSPACE}\\sbom.json", // Ruta al SBOM generado
+                    synchronous: true, // Esperar resultados
+                    projectId: "${env.PROJECT_ID}",
+                    dependencyTrackUrl: "${env.DT_URL}",
+                    dependencyTrackApiKey: "${env.DEPENDENCY_TRACK_API_KEY}",
+                    failedTotalHigh: 1,     // Falla si hay 1 alta
+                    unstableTotalHigh: 1    // Marca como inestable si hay al menos 1 alta
+                )
+            }
+        }
+        
         //Stage para analizar secretos con Gitleaks
         stage('Gitleaks Scan') {
             steps {

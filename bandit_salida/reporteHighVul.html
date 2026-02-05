@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+    Bandit Report
+</title>
+
+<style>
+
+html * {
+    font-family: "Arial", sans-serif;
+}
+
+pre {
+    font-family: "Monaco", monospace;
+}
+
+.bordered-box {
+    border: 1px solid black;
+    padding-top:.5em;
+    padding-bottom:.5em;
+    padding-left:1em;
+}
+
+.metrics-box {
+    font-size: 1.1em;
+    line-height: 130%;
+}
+
+.metrics-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: .25em;
+}
+
+.issue-description {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.candidate-issues {
+    margin-left: 2em;
+    border-left: solid 1px; LightGray;
+    padding-left: 5%;
+    margin-top: .2em;
+    margin-bottom: .2em;
+}
+
+.issue-block {
+    border: 1px solid LightGray;
+    padding-left: .5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+}
+
+.issue-sev-high {
+    background-color: Pink;
+}
+
+.issue-sev-medium {
+    background-color: NavajoWhite;
+}
+
+.issue-sev-low {
+    background-color: LightCyan;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="metrics">
+    <div class="metrics-box bordered-box">
+        <div class="metrics-title">
+            Metrics:<br>
+        </div>
+        Total lines of code: <span id="loc">3122</span><br>
+        Total lines skipped (#nosec): <span id="nosec">0</span>
+    </div>
+</div>
+
+
+
+
+<br>
+<div id="results">
+    
+<div id="issue-0">
+<div class="issue-block issue-sev-high">
+    <b>hashlib: </b> Use of weak MD5 hash for security. Consider usedforsecurity=False<br>
+    <b>Test ID:</b> B324<br>
+    <b>Severity: </b>HIGH<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/327.html" target="_blank">CWE-327</a><br>
+    <b>File: </b><a href=".\dockerized_labs\broken_auth_lab\app.py" target="_blank">.\dockerized_labs\broken_auth_lab\app.py</a><br>
+    <b>Line number: </b>87<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b324_hashlib.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b324_hashlib.html</a><br>
+
+<div class="code">
+<pre>
+86	            # Vulnerable: Predictable token generation
+87	            token = hashlib.md5(f&quot;{email}:{datetime.now()}&quot;.encode()).hexdigest()
+88	            password_reset_tokens[token] = username
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-1">
+<div class="issue-block issue-sev-high">
+    <b>flask_debug_true: </b> A Flask app appears to be run with debug=True, which exposes the Werkzeug debugger and allows the execution of arbitrary code.<br>
+    <b>Test ID:</b> B201<br>
+    <b>Severity: </b>HIGH<br>
+    <b>Confidence: </b>MEDIUM<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/94.html" target="_blank">CWE-94</a><br>
+    <b>File: </b><a href=".\dockerized_labs\broken_auth_lab\app.py" target="_blank">.\dockerized_labs\broken_auth_lab\app.py</a><br>
+    <b>Line number: </b>124<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b201_flask_debug_true.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b201_flask_debug_true.html</a><br>
+
+<div class="code">
+<pre>
+123	if __name__ == &#x27;__main__&#x27;:
+124	    app.run(host=&#x27;0.0.0.0&#x27;, port=5000, debug=True)  # Vulnerable: Debug mode enabled in production 
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-2">
+<div class="issue-block issue-sev-medium">
+    <b>hardcoded_bind_all_interfaces: </b> Possible binding to all interfaces.<br>
+    <b>Test ID:</b> B104<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>MEDIUM<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/605.html" target="_blank">CWE-605</a><br>
+    <b>File: </b><a href=".\dockerized_labs\broken_auth_lab\app.py" target="_blank">.\dockerized_labs\broken_auth_lab\app.py</a><br>
+    <b>Line number: </b>124<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b104_hardcoded_bind_all_interfaces.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b104_hardcoded_bind_all_interfaces.html</a><br>
+
+<div class="code">
+<pre>
+123	if __name__ == &#x27;__main__&#x27;:
+124	    app.run(host=&#x27;0.0.0.0&#x27;, port=5000, debug=True)  # Vulnerable: Debug mode enabled in production 
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-3">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue.<br>
+    <b>Test ID:</b> B301<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/502.html" target="_blank">CWE-502</a><br>
+    <b>File: </b><a href=".\dockerized_labs\insec_des_lab\main.py" target="_blank">.\dockerized_labs\insec_des_lab\main.py</a><br>
+    <b>Line number: </b>36<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b301-pickle" target="_blank">https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b301-pickle</a><br>
+
+<div class="code">
+<pre>
+35	        # Intentionally vulnerable deserialization, matching PyGoat
+36	        user = pickle.loads(decoded_data)
+37	        
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-4">
+<div class="issue-block issue-sev-medium">
+    <b>hardcoded_bind_all_interfaces: </b> Possible binding to all interfaces.<br>
+    <b>Test ID:</b> B104<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>MEDIUM<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/605.html" target="_blank">CWE-605</a><br>
+    <b>File: </b><a href=".\dockerized_labs\insec_des_lab\main.py" target="_blank">.\dockerized_labs\insec_des_lab\main.py</a><br>
+    <b>Line number: </b>51<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b104_hardcoded_bind_all_interfaces.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b104_hardcoded_bind_all_interfaces.html</a><br>
+
+<div class="code">
+<pre>
+50	if __name__ == &#x27;__main__&#x27;:
+51	    app.run(host=&#x27;0.0.0.0&#x27;, port=8080)
+52	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-5">
+<div class="issue-block issue-sev-high">
+    <b>hashlib: </b> Use of weak MD5 hash for security. Consider usedforsecurity=False<br>
+    <b>Test ID:</b> B324<br>
+    <b>Severity: </b>HIGH<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/327.html" target="_blank">CWE-327</a><br>
+    <b>File: </b><a href=".\introduction\mitre.py" target="_blank">.\introduction\mitre.py</a><br>
+    <b>Line number: </b>161<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b324_hashlib.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b324_hashlib.html</a><br>
+
+<div class="code">
+<pre>
+160	        username = request.POST.get(&#x27;username&#x27;)
+161	        password = md5(password.encode()).hexdigest()
+162	        User = CSRF_user_tbl.objects.filter(username=username, password=password)
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-6">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href=".\introduction\mitre.py" target="_blank">.\introduction\mitre.py</a><br>
+    <b>Line number: </b>218<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+217	        expression = request.POST.get(&#x27;expression&#x27;)
+218	        result = eval(expression)
+219	        return JsonResponse({&#x27;result&#x27;: result})
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-7">
+<div class="issue-block issue-sev-high">
+    <b>subprocess_popen_with_shell_equals_true: </b> subprocess call with shell=True identified, security issue.<br>
+    <b>Test ID:</b> B602<br>
+    <b>Severity: </b>HIGH<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href=".\introduction\mitre.py" target="_blank">.\introduction\mitre.py</a><br>
+    <b>Line number: </b>233<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b602_subprocess_popen_with_shell_equals_true.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b602_subprocess_popen_with_shell_equals_true.html</a><br>
+
+<div class="code">
+<pre>
+232	def command_out(command):
+233	    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+234	    return process.communicate()
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-8">
+<div class="issue-block issue-sev-medium">
+    <b>request_without_timeout: </b> Call to requests without timeout<br>
+    <b>Test ID:</b> B113<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>LOW<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/400.html" target="_blank">CWE-400</a><br>
+    <b>File: </b><a href=".\introduction\playground\A6\utility.py" target="_blank">.\introduction\playground\A6\utility.py</a><br>
+    <b>Line number: </b>9<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b113_request_without_timeout.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b113_request_without_timeout.html</a><br>
+
+<div class="code">
+<pre>
+8	        url = f&quot;https://pypi.org/pypi/{k[0]}/{k[1]}/json&quot;
+9	        response = requests.get(url)
+10	        response.raise_for_status()
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-9">
+<div class="issue-block issue-sev-medium">
+    <b>hardcoded_sql_expressions: </b> Possible SQL injection vector through string-based query construction.<br>
+    <b>Test ID:</b> B608<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>LOW<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/89.html" target="_blank">CWE-89</a><br>
+    <b>File: </b><a href=".\introduction\views.py" target="_blank">.\introduction\views.py</a><br>
+    <b>Line number: </b>157<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b608_hardcoded_sql_expressions.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b608_hardcoded_sql_expressions.html</a><br>
+
+<div class="code">
+<pre>
+156	
+157	                sql_query = &quot;SELECT * FROM introduction_login WHERE user=&#x27;&quot;+name+&quot;&#x27;AND password=&#x27;&quot;+password+&quot;&#x27;&quot;
+158	                print(sql_query)
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-10">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue.<br>
+    <b>Test ID:</b> B301<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/502.html" target="_blank">CWE-502</a><br>
+    <b>File: </b><a href=".\introduction\views.py" target="_blank">.\introduction\views.py</a><br>
+    <b>Line number: </b>213<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b301-pickle" target="_blank">https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b301-pickle</a><br>
+
+<div class="code">
+<pre>
+212	            token = base64.b64decode(token)
+213	            admin = pickle.loads(token)
+214	            if admin.admin == 1:
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-11">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Using xml.sax.make_parser to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.sax.make_parser with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called<br>
+    <b>Test ID:</b> B317<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/20.html" target="_blank">CWE-20</a><br>
+    <b>File: </b><a href=".\introduction\views.py" target="_blank">.\introduction\views.py</a><br>
+    <b>Line number: </b>252<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b313-b320-xml-bad-sax" target="_blank">https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b313-b320-xml-bad-sax</a><br>
+
+<div class="code">
+<pre>
+251	
+252	    parser = make_parser()
+253	    parser.setFeature(feature_external_ges, True)
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-12">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Using xml.dom.pulldom.parseString to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.dom.pulldom.parseString with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called<br>
+    <b>Test ID:</b> B319<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/20.html" target="_blank">CWE-20</a><br>
+    <b>File: </b><a href=".\introduction\views.py" target="_blank">.\introduction\views.py</a><br>
+    <b>Line number: </b>254<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b313-b320-xml-bad-pulldom" target="_blank">https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b313-b320-xml-bad-pulldom</a><br>
+
+<div class="code">
+<pre>
+253	    parser.setFeature(feature_external_ges, True)
+254	    doc = parseString(request.body.decode(&#x27;utf-8&#x27;), parser=parser)
+255	    for event, node in doc:
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-13">
+<div class="issue-block issue-sev-high">
+    <b>subprocess_popen_with_shell_equals_true: </b> subprocess call with shell=True identified, security issue.<br>
+    <b>Test ID:</b> B602<br>
+    <b>Severity: </b>HIGH<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href=".\introduction\views.py" target="_blank">.\introduction\views.py</a><br>
+    <b>Line number: </b>425<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b602_subprocess_popen_with_shell_equals_true.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b602_subprocess_popen_with_shell_equals_true.html</a><br>
+
+<div class="code">
+<pre>
+424	                    command,
+425	                    shell=True,
+426	                    stdout=subprocess.PIPE, 
+427	                    stderr=subprocess.PIPE)
+428	                stdout, stderr = process.communicate()
+429	                data = stdout.decode(&#x27;utf-8&#x27;)
+430	                stderr = stderr.decode(&#x27;utf-8&#x27;)
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-14">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href=".\introduction\views.py" target="_blank">.\introduction\views.py</a><br>
+    <b>Line number: </b>453<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.9.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+452	            try:
+453	                output = eval(val)
+454	            except:
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-15">
+<div class="issue-block issue-sev-medium">
+    <b>yaml_load: </b> Use of unsafe yaml load. Allows instantiation of arbitrary objects. Consider yaml.safe_load().<br>
+    <b>Test ID:</b> B506<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/20.html" target="_blank">CWE-20</a><br>
+    <b>File: </b><a href=".\introduction\views.py" target="_blank">.\introduction\views.py</a><br>
+    <b>Line number: </b>553<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b506_yaml_load.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b506_yaml_load.html</a><br>
+
+<div class="code">
+<pre>
+552	                try :
+553	                    data = yaml.load(file,yaml.Loader)
+554	                    
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-16">
+<div class="issue-block issue-sev-medium">
+    <b>hardcoded_sql_expressions: </b> Possible SQL injection vector through string-based query construction.<br>
+    <b>Test ID:</b> B608<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>LOW<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/89.html" target="_blank">CWE-89</a><br>
+    <b>File: </b><a href=".\introduction\views.py" target="_blank">.\introduction\views.py</a><br>
+    <b>Line number: </b>857<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b608_hardcoded_sql_expressions.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b608_hardcoded_sql_expressions.html</a><br>
+
+<div class="code">
+<pre>
+856	        if name:
+857	            sql_query = &quot;SELECT * FROM introduction_sql_lab_table WHERE id=&#x27;&quot;+name+&quot;&#x27;AND password=&#x27;&quot;+password+&quot;&#x27;&quot;
+858	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-17">
+<div class="issue-block issue-sev-medium">
+    <b>request_without_timeout: </b> Call to requests without timeout<br>
+    <b>Test ID:</b> B113<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>LOW<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/400.html" target="_blank">CWE-400</a><br>
+    <b>File: </b><a href=".\introduction\views.py" target="_blank">.\introduction\views.py</a><br>
+    <b>Line number: </b>956<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b113_request_without_timeout.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b113_request_without_timeout.html</a><br>
+
+<div class="code">
+<pre>
+955	        try:
+956	            response = requests.get(url)
+957	            return render(request, &quot;Lab/ssrf/ssrf_lab2.html&quot;, {&quot;response&quot;: response.content.decode()})
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-18">
+<div class="issue-block issue-sev-high">
+    <b>hashlib: </b> Use of weak MD5 hash for security. Consider usedforsecurity=False<br>
+    <b>Test ID:</b> B324<br>
+    <b>Severity: </b>HIGH<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/327.html" target="_blank">CWE-327</a><br>
+    <b>File: </b><a href=".\introduction\views.py" target="_blank">.\introduction\views.py</a><br>
+    <b>Line number: </b>1019<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.9.3/plugins/b324_hashlib.html" target="_blank">https://bandit.readthedocs.io/en/1.9.3/plugins/b324_hashlib.html</a><br>
+
+<div class="code">
+<pre>
+1018	            try:
+1019	                password = md5(password.encode()).hexdigest()
+1020	                user = CF_user.objects.filter(username=username,password=password).first()
+</pre>
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
