@@ -42,7 +42,6 @@ pipeline {
                     // Ejecuta Bandit y guarda la salida en archivos
                     // -r: recursivo, -f: formato, -o: archivo de salida
                     // Se usa '|| exit 0' para que el pipeline no falle si encuentra vulnerabilidades (opcional)
-                    //C:\\Users\\HP\\AppData\\Roaming\\Python\\Python314\\Scripts\\
                     bat "C:\\Python314\\Scripts\\bandit.exe -r . -f json -o ${OUTPUT_PATH}\\reporte.json --exit-zero"
                     bat "C:\\Python314\\Scripts\\bandit.exe -r . -f html -o ${OUTPUT_PATH}\\reporte.html --exit-zero"
                 }
@@ -54,8 +53,6 @@ pipeline {
             steps {
                 // Publicar SBOM a Dependency-Track
                 dependencyTrackPublisher(
-                    //C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml
-                    //
                     artifact: "${env.WORKSPACE}\\sbom.json", // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
                     projectId: "${env.PROJECT_ID}",
@@ -75,9 +72,16 @@ pipeline {
                     // Ejecuta Bandit y guarda la salida en archivos
                     // -r: recursivo, -f: formato, -o: archivo de salida
                     // Se usa '|| exit 0' para que el pipeline no falle si encuentra vulnerabilidades (opcional)
-                    //C:\\Users\\HP\\AppData\\Roaming\\Python\\Python314\\Scripts\\
                     bat "C:\\Python314\\Scripts\\bandit.exe -r . -f html -o ${OUTPUT_PATH}\\reporteHighVul.html -ll"
                 }
+            }
+        }
+        
+        //Stage para analizar secretos con Gitleaks
+        stage('Gitleaks Scan') {
+            steps {
+                // Ejecuta gitleaks y genera el reporte html
+                bat 'C:\\Users\\HP\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks detect --source . --verbose'
             }
         }
         
@@ -93,16 +97,8 @@ pipeline {
                     projectId: "${env.PROJECT_ID}",
                     dependencyTrackUrl: "${env.DT_URL}",
                     dependencyTrackApiKey: "${env.DEPENDENCY_TRACK_API_KEY}",
-                    failedTotalHigh: 0     // Falla si hay 1 alta
+                    failedTotalHigh: 0,     // Falla si hay 1 alta
                 )
-            }
-        }
-        
-        //Stage para analizar secretos con Gitleaks
-        stage('Gitleaks Scan') {
-            steps {
-                // Ejecuta gitleaks y genera el reporte html
-                bat 'C:\\Users\\HP\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks detect --source . --verbose'
             }
         }
         
