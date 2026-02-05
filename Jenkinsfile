@@ -65,6 +65,7 @@ pipeline {
                 dependencyTrackPublisher(
                     //C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml
                     //
+                    println "Path initialized to: ${env.WORKSPACE}"
                     artifact: "${env.WORKSPACE}\\sbom.json", // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
                     projectId: "${env.PROJECT_ID}",
