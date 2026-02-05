@@ -69,7 +69,7 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: "${env.WORKSPACE}\\sbom.xml", onlyIfSuccessful: true,
+            archiveArtifacts artifacts: "${env.WORKSPACE}\\sbom.xml", onlyIfSuccessful: true
             // Limpieza opcional
             deleteDir()
         }
