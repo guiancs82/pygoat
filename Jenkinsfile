@@ -65,22 +65,17 @@ pipeline {
             }
         }
         
+        //Stage para analizar secretos con Gitleaks
         stage('Gitleaks Scan') {
             steps {
                 // Ejecuta gitleaks y genera el reporte html
                 //bat 'C:\\Users\\HP\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks detect --source C:\\repogithub\\pygoat\\ --report-format html --report-path C:\\repogithub\\pygoat\\gitleaks_salida\\gitleaks-report.html'
-                bat 'C:\\Users\\HP\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks detect --source . --verbose --report-path=.\\gitleaks-report.json'
+                bat 'C:\\Users\\HP\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks detect --source . --verbose'
             }
         }
         
-        //stage('Archive Report') {
-        //    steps {
-        //        // Guarda el reporte HTML como artefacto de la build
-        //        archiveArtifacts artifacts: 'gitleaks-report.html', allowEmptyArchive: true
-        //    }
-        //}
+                
         
-        // Puedes añadir más etapas como DAST, Deploy, etc.
     }
     post {
         always {
