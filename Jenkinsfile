@@ -7,11 +7,11 @@ pipeline {
         
         //CONSTANTES PARA DEPENDENCY-Track
         // ID de la credencial configurada en Jenkins
-        DEPENDENCY_TRACK_API_KEY = 'odt_mpVZfuV1_ig3GZtRBI1wMlW7ko4IFD4hDW9cMyuQD'
-        DT_URL = 'http://localhost:8082'
-        PROJECT_ID = 'PYGOAT'
-        SBOM_FILE = '/opt/owasp/dependency-track/dependency_track_salida/bom.xml'
-        WORKSPACE = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\proyecto_final_pygoat\\'
+        DEPENDENCY_TRACK_API_KEY = "odt_mpVZfuV1_ig3GZtRBI1wMlW7ko4IFD4hDW9cMyuQD"
+        DT_URL = "http://localhost:8082"
+        PROJECT_ID = "PYGOAT"
+        SBOM_FILE = "/opt/owasp/dependency-track/dependency_track_salida/bom.xml"
+        WORKSPACE = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\proyecto_final_pygoat\\"
     }
 
     stages {
