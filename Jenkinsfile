@@ -32,7 +32,7 @@ pipeline {
             }
         }
 
-        //Stage de Bandit
+        //Stage SAST de Bandit
         stage('SAST Scan with Bandit') {
             steps {
                 script {
@@ -49,7 +49,7 @@ pipeline {
             }
         }
         
-        //Stage de Dependency-Track
+        //Stage SCA de Dependency-Track
         stage('Dependency-Track Scan') {
             steps {
                 // Publicar SBOM a Dependency-Track
@@ -64,6 +64,20 @@ pipeline {
                 )
             }
         }
+        
+        stage('Gitleaks Scan') {
+            steps {
+                // Ejecuta gitleaks y genera el reporte html
+                bat 'gitleaks detect --source C:\\repogithub\\pygoat\\ --report-format html --report-path C:\\repogithub\\pygoat\\gitleaks_salida\\gitleaks-report.html'
+            }
+        }
+        
+        //stage('Archive Report') {
+        //    steps {
+        //        // Guarda el reporte HTML como artefacto de la build
+        //        archiveArtifacts artifacts: 'gitleaks-report.html', allowEmptyArchive: true
+        //    }
+        //}
         
         // Puedes añadir más etapas como DAST, Deploy, etc.
     }
