@@ -4,7 +4,7 @@ pipeline {
     environment {
         //CONSTANTES PARA BANDIT
         OUTPUT_PATH = "C:\\repogithub\\pygoat\\bandit_salida"
-        OUTPUT_PATH_DEPENDENCY_TRACK = "C:\\repogithub\\pygoat\\dependency_track_salida"
+        OUTPUT_PATH_DEPENDENCY_TRACK = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\proyecto_final_pygoat\\"
         
         //CONSTANTES PARA DEPENDENCY-Track
         // ID de la credencial configurada en Jenkins
@@ -70,7 +70,7 @@ pipeline {
     }
     post {
         always {
-            archiveArtifacts artifacts: "${env.OUTPUT_PATH_DEPENDENCY_TRACK}\\sbom.xml", onlyIfSuccessful: true
+            archiveArtifacts artifacts: "${env.OUTPUT_PATH_DEPENDENCY_TRACK}\\sbom.xml", onlyIfSuccessful: true,
             // Limpieza opcional
             deleteDir()
         }
