@@ -7,7 +7,7 @@ pipeline {
         
         //CONSTANTES PARA DEPENDENCY-Track
         // ID de la credencial configurada en Jenkins
-        DEPENDENCY_TRACK_API_KEY = "odt_mpVZfuV1_cUKeN5kblobfef0rfEu4eV2lE1cAQfpt"
+        DEPENDENCY_TRACK_API_KEY = "odt_lxOz74Es_LaPQrq9ALXjw9e1VbhAxmshW6D77Z7Nj"
         DT_URL = "http://localhost:8080"
         PROJECT_ID = "PYGOAT"
         SBOM_FILE = "/opt/owasp/dependency-track/dependency_track_salida/bom.xml"
