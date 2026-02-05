@@ -68,7 +68,7 @@ pipeline {
         stage('Gitleaks Scan') {
             steps {
                 // Ejecuta gitleaks y genera el reporte html
-                bat 'gitleaks detect --source C:\\repogithub\\pygoat\\ --report-format html --report-path C:\\repogithub\\pygoat\\gitleaks_salida\\gitleaks-report.html'
+                bat 'C:\\Users\\HP\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks detect --source C:\\repogithub\\pygoat\\ --report-format html --report-path C:\\repogithub\\pygoat\\gitleaks_salida\\gitleaks-report.html'
             }
         }
         
