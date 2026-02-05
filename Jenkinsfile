@@ -67,7 +67,7 @@ pipeline {
                     //
                     artifact: "${env.WORKSPACE}\\sbom.json", // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
-                    projectId: "${env.PROJECT_ID}",
+                    //projectId: "${env.PROJECT_ID}",
                     dependencyTrackUrl: "${env.DT_URL}"
                     //,synchronous: true,
                     //apiKey: "${env.DEPENDENCY_TRACK_API_KEY}"
