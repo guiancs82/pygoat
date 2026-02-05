@@ -9,7 +9,7 @@ pipeline {
         // ID de la credencial configurada en Jenkins
         DEPENDENCY_TRACK_API_KEY = "odt_lxOz74Es_LaPQrq9ALXjw9e1VbhAxmshW6D77Z7Nj"
         DT_URL = "http://localhost:8081"
-        PROJECT_ID = "PYGOAT"
+        PROJECT_ID = "e23cf72e-e768-4c10-94de-05d53fe43110"
         SBOM_FILE = "/opt/owasp/dependency-track/dependency_track_salida/bom.xml"
         WORKSPACE = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\proyecto_final_pygoat\\"
     }
@@ -67,8 +67,9 @@ pipeline {
                     //
                     artifact: "${env.WORKSPACE}\\sbom.json", // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
-                    projectName: "${env.PROJECT_ID}",
-                    dependencyTrackUrl: "${env.DT_URL}"
+                    projectId: "${env.PROJECT_ID}",
+                    dependencyTrackUrl: "${env.DT_URL}",
+                    dependencyTrackApiKey: "${env.DEPENDENCY_TRACK_API_KEY}"
                     //,synchronous: true,
                     //apiKey: "${env.DEPENDENCY_TRACK_API_KEY}"
                 )
