@@ -65,14 +65,6 @@ pipeline {
             }
         }
         
-        //Stage para analizar secretos con Gitleaks
-        stage('Gitleaks Scan') {
-            steps {
-                // Ejecuta gitleaks y genera el reporte html
-                bat 'C:\\Users\\HP\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks detect --source . --verbose'
-            }
-        }
-        
         //Stage SAST de Bandit con vulnerabilidades altas o superior
         stage('SAST Scan with Bandit vulnerabilidades altas') {
             steps {
@@ -106,8 +98,13 @@ pipeline {
             }
         }
         
-        
-                
+        //Stage para analizar secretos con Gitleaks
+        stage('Gitleaks Scan') {
+            steps {
+                // Ejecuta gitleaks y genera el reporte html
+                bat 'C:\\Users\\HP\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks detect --source . --verbose'
+            }
+        }
         
     }
     post {
