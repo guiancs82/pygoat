@@ -4,6 +4,7 @@ pipeline {
     environment {
         //CONSTANTES PARA BANDIT
         OUTPUT_PATH = "C:\\repogithub\\pygoat\\bandit_salida"
+        OUTPUT_PATH_DEPENDENCY_TRACK = "C:\\repogithub\\pygoat\\dependency_track_salida"
         
         //CONSTANTES PARA DEPENDENCY-Track
         // ID de la credencial configurada en Jenkins
@@ -50,15 +51,6 @@ pipeline {
         }
         
         //Stage de Dependency-Track
-        //stage('Build & SBOM') {
-        //    steps {
-                // Generar SBOM usando Maven (o herramientas como cdxgen)
-                //bat 'npm init -y'
-        //        bat 'npm install -g @cyclonedx/cyclonedx-npm'
-        //        bat 'set PATH=%PATH%;C:\\Users\\HP\\AppData\\Roaming\\npm'
-        //        bat 'C:\\Users\\HP\\AppData\\Roaming\\npm\\cyclonedx-npm --output-file C:\\repogithub\\pygoat\\dependency_track_salida\\sbom.json'
-        //    }
-        //}
         stage('Dependency-Track Scan') {
             steps {
                 // Publicar SBOM a Dependency-Track
@@ -70,8 +62,6 @@ pipeline {
                     projectId: "${env.PROJECT_ID}",
                     dependencyTrackUrl: "${env.DT_URL}",
                     dependencyTrackApiKey: "${env.DEPENDENCY_TRACK_API_KEY}"
-                    //,synchronous: true,
-                    //apiKey: "${env.DEPENDENCY_TRACK_API_KEY}"
                 )
             }
         }
@@ -80,11 +70,12 @@ pipeline {
     }
     post {
         always {
+            archiveArtifacts artifacts: "${env.OUTPUT_PATH_DEPENDENCY_TRACK}\\sbom.xml", onlyIfSuccessful: true
             // Limpieza opcional
             deleteDir()
         }
         failure {
-            echo 'El pipeline falló en la etapa SAST.'
+            echo 'El pipeline falló.'
         }
     }
 }
