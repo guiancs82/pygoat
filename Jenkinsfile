@@ -82,7 +82,7 @@ pipeline {
         }
         
         //Stage SCA de Dependency-Track con punto de parada si  hay una vulnerabilidad alta
-        stage('Dependency-Track Scan') {
+        stage('Dependency-Track Scan con punto de parada Alta') {
             steps {
                 // Publicar SBOM a Dependency-Track
                 dependencyTrackPublisher(
