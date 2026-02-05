@@ -70,7 +70,7 @@ pipeline {
                     projectId: "${env.PROJECT_ID}",
                     dependencyTrackUrl: "${env.DT_URL}",
                     //synchronous: true,
-                    apiToken: "${env.DEPENDENCY_TRACK_API_KEY}"
+                    apiKey: "${env.DEPENDENCY_TRACK_API_KEY}"
                 )
             }
         }
