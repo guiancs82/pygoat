@@ -69,7 +69,7 @@ pipeline {
                     synchronous: true, // Esperar resultados
                     projectId: "${env.PROJECT_ID}",
                     dependencyTrackUrl: "${env.DT_URL}",
-                    synchronous: true
+                    synchronous: true,
                     apiToken: "${env.DEPENDENCY_TRACK_API_KEY}"
                 )
             }
