@@ -21,14 +21,7 @@ pipeline {
     }
 
     stages {
-        //stage('Cleanup') {
-        //    steps {
-        //        node { // or 'agent any' above
-        //            deleteDir()
-        //        }
-        //   }
-        //}
-    
+        
         //Baja una copia del repositorio de pygoat
         stage('Checkout') {
             steps {
@@ -116,7 +109,6 @@ pipeline {
             steps {
                 // Publicar SBOM a Dependency-Track
                 dependencyTrackPublisher(
-                    //C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml
                     //
                     artifact: "${env.WORKSPACE}\\sbom.json", // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
