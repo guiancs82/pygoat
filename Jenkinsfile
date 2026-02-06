@@ -88,7 +88,7 @@ pipeline {
         }  
         
         //Stage SAST de Bandit con vulnerabilidades altas o superior
-        stage('SAST Scan with Bandit vulnerabilidades altas') {
+        stage('SAST Scan with Bandit 2') {
             steps {
                 script {
                     // Crea la carpeta de salida si no existe
@@ -104,7 +104,7 @@ pipeline {
         
         
         //Stage SCA de Dependency-Track con punto de parada si  hay una vulnerabilidad alta
-        stage('Dependency-Track Scan con punto de parada Alta') {
+        stage('Dependency-Track Scan 2') {
             steps {
                 // Publicar SBOM a Dependency-Track
                 dependencyTrackPublisher(
