@@ -60,7 +60,7 @@ pipeline {
                 // Usando el plugin oficial de DefectDojo
                 defectDojoPublisher(
                     artifact: "${env.OUTPUT_PATH}\\reporte.json",
-                    "scan_type": "Bandit Scan",
+                    scanType: "Bandit Scan",
                     //defectDojoUrl: "${env.DOJO_URL}",
                     //defectDojoCredentialsId: "${env.DOJO_TOKEN}",
                     productId: "${env.PRODUCT_ID}",
