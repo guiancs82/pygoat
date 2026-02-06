@@ -16,7 +16,7 @@ pipeline {
         DEPENDENCY_TRACK_API_KEY = "odt_lxOz74Es_LaPQrq9ALXjw9e1VbhAxmshW6D77Z7Nj"
         DT_URL = "http://localhost:8081"
         PROJECT_ID = "e23cf72e-e768-4c10-94de-05d53fe43110"
-        SBOM_FILE = "/opt/owasp/dependency-track/dependency_track_salida/bom.xml"
+        SBOM_FILE = "C:\\repogithub\\pygoat\\dependency_track_salida\\sbom.json"
         WORKSPACE = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\proyecto_final_pygoat\\"
     }
 
@@ -118,7 +118,7 @@ pipeline {
                 dependencyTrackPublisher(
                     //C:\\repogithub\\pygoat\\dependency_track_salida\\bom.xml
                     //
-                    artifact: "${env.WORKSPACE}\\sbom.json", // Ruta al SBOM generado
+                    artifact: "${env.SBOM_FILE}", // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
                     projectId: "${env.PROJECT_ID}",
                     dependencyTrackUrl: "${env.DT_URL}",
