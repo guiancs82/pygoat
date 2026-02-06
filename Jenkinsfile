@@ -61,12 +61,13 @@ pipeline {
                 defectDojoPublisher(
                     artifact: "${env.OUTPUT_PATH}\\reporte.json",
                     scanType: "Bandit JSON Report",
-                    defectDojoUrl: "${env.DOJO_URL}",
-                    defectDojoCredentialsId: "${env.DOJO_TOKEN}",
+                    //defectDojoUrl: "${env.DOJO_URL}",
+                    //defectDojoCredentialsId: "${env.DOJO_TOKEN}",
                     productId: "${env.PRODUCT_ID}",
-                    engagementId: "${env.ENGAGEMENT_ID}",
-                    autoCreateEngagements: false,
-                    autoCreateProducts: false
+                    engagementId: "${env.ENGAGEMENT_ID}"
+                    //engagementId: "${env.ENGAGEMENT_ID}",
+                    //autoCreateEngagements: false,
+                    //autoCreateProducts: false
                 )
             }
         }
