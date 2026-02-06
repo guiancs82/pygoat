@@ -9,7 +9,7 @@ pipeline {
         PRODUCT_ID = "1"
         ENGAGEMENT_ID = "1"
         DOJO_URL = "http://localhost:8084"
-        DOJO_TOKEN = "2d99e68e27e24a429cdf3e697e0df08ce24e575f"
+        DOJO_TOKEN = credentials("2d99e68e27e24a429cdf3e697e0df08ce24e575f")
         
         //CONSTANTES PARA DEPENDENCY-Track
         // ID de la credencial configurada en Jenkins
