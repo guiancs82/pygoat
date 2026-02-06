@@ -5,6 +5,12 @@ pipeline {
         //CONSTANTES PARA BANDIT
         OUTPUT_PATH = "C:\\repogithub\\pygoat\\bandit_salida"
         
+        //CONSTANTES DEL DEFECT DOJO
+        PRODUCT_ID = "1"
+        ENGAGEMENT_ID = "1"
+        DOJO_URL = "http://localhost:8084"
+        DOJO_TOKEN = "2d99e68e27e24a429cdf3e697e0df08ce24e575f"
+        
         //CONSTANTES PARA DEPENDENCY-Track
         // ID de la credencial configurada en Jenkins
         DEPENDENCY_TRACK_API_KEY = "odt_lxOz74Es_LaPQrq9ALXjw9e1VbhAxmshW6D77Z7Nj"
@@ -48,6 +54,22 @@ pipeline {
             }
         }
         
+        //Stage para integrar defect dojo consumiento la salida de bandit
+        stage('Upload to DefectDojo') {
+            steps {
+                // Usando el plugin oficial de DefectDojo
+                defectDojoPublisher(
+                    artifact: "${env.OUTPUT_PATH}\\reporte.json",
+                    scanType: "Bandit JSON Report",
+                    defectDojoUrl: "${env.DOJO_URL}",
+                    defectDojoCredentialsId: "${env.DOJO_TOKEN}",
+                    engagementId: "${env.ENGAGEMENT_ID}",
+                    autoCreateEngagements: false,
+                    autoCreateProducts: false
+                )
+            }
+        }
+        
         //Stage SCA de Dependency-Track
         stage('Dependency-Track Scan') {
             steps {
@@ -62,6 +84,16 @@ pipeline {
             }
         }
         
+        
+        
+        //Stage para analizar secretos con Gitleaks
+        stage('Gitleaks Scan') {
+            steps {
+                // Ejecuta gitleaks y genera el reporte html
+                bat 'C:\\Users\\HP\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks detect --source . --verbose'
+            }
+        }        
+        
         //Stage SAST de Bandit con vulnerabilidades altas o superior
         stage('SAST Scan with Bandit vulnerabilidades altas') {
             steps {
@@ -74,14 +106,6 @@ pipeline {
                     // Se usa '|| exit 0' para que el pipeline no falle si encuentra vulnerabilidades (opcional)
                     bat "C:\\Python314\\Scripts\\bandit.exe -r . -f html -o ${OUTPUT_PATH}\\reporteHighVul.html -ll"
                 }
-            }
-        }
-        
-        //Stage para analizar secretos con Gitleaks
-        stage('Gitleaks Scan') {
-            steps {
-                // Ejecuta gitleaks y genera el reporte html
-                bat 'C:\\Users\\HP\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gitleaks.Gitleaks_Microsoft.Winget.Source_8wekyb3d8bbwe\\gitleaks detect --source . --verbose'
             }
         }
         
