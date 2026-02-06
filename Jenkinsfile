@@ -77,7 +77,7 @@ pipeline {
             steps {
                 // Publicar SBOM a Dependency-Track
                 dependencyTrackPublisher(
-                    artifact: "${env.OUTPUT_PATH}\\reporte.json", // Ruta al SBOM generado
+                    artifact: "${env.WORKSPACE}\\sbom.json", // Ruta al SBOM generado
                     synchronous: true, // Esperar resultados
                     projectId: "${env.PROJECT_ID}",
                     dependencyTrackUrl: "${env.DT_URL}",
